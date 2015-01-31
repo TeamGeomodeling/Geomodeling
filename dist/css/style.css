@@ -77,7 +77,7 @@ small{
 
 footer{
 	padding: 30px 0 15px 0;
-	font-size: 9pt;
+	font-size: 7pt;
 	color: #34495E;
 	text-align: center;
 }
@@ -85,7 +85,10 @@ footer{
 body{
 	background: #ECF0F1;
 	padding-top: 70px;
+	margin:0;
 }
+
+/*---------------------------------------------------- Projects ----------------------------------------------------*/
 
 .search{
 	margin-top: 20px;
@@ -93,4 +96,14 @@ body{
 
 .search .searchinput{
 	min-width: 400px;
+}
+
+/*--------------------------------------------------- Connexion ----------------------------------------------------*/
+
+.login-form {
+	position: relative;
+	padding: 24px 23px 20px;
+	background-color: #edeff1;
+	border-radius: 7px;
+	/*border: #BDC3C7 2px solid;*/
 }

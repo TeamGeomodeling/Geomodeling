@@ -144,7 +144,7 @@ HTML;
 			<div class="row geo-row">
 				<div class="col-xs-12 col-md-4"></div>
 				<div class="col-xs-12 col-md-4">
-					<a href="#fakelink" class="btn btn-block btn-hg btn-primary btnsolo"> Go! </a>
+					<a href="connexion.php" class="btn btn-block btn-hg btn-primary btnsolo"> Go! </a>
 				</div>
 				<div class="col-xs-12 col-md-4"></div>
 			</div>

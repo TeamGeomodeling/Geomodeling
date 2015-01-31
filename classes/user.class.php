@@ -48,7 +48,7 @@ SQL
 	}
 	
 	/**
-	 * Ajoute un user à la base de données
+	 * Ajoute users à la base de données
 	 * @param props : tableau associatif avec pour clés les colonnes à remplir 
 	 * @return le résultat de la requête
 	 */

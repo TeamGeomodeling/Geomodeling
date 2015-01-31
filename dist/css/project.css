@@ -1,0 +1,54 @@
+body{
+	padding:0;
+	margin:0;
+	margin-top: 30px;
+	min-width: 1000px;
+}
+
+section{
+	padding:0;
+	margin:0;
+}
+
+section .container{
+	padding:0;
+	margin:0;
+}
+
+
+/*---------------------------------------------------- Navbar ----------------------------------------------------*/
+.navbar-brand{
+	background: url('../../img/geologo.png') left 0 no-repeat;
+	background-size: 40px 40px;
+	padding-left: 50px;
+	background-position: 5px 5px;
+}
+.navbar{
+	margin-bottom: 0px;
+	box-shadow: 1px 1px 3px #bbb;
+
+}
+
+.navbar-fixed-top {
+  position: fixed;
+  z-index: 9999;
+}
+
+/*------------------------------------------------ TransformToolBar ------------------------------------------------*/
+
+#TransformTool .input-sm{
+	background: red;
+	margin-top: 3px;
+	width:45px;
+	height: 20pt;
+}
+
+#TransformTool{
+	position: fixed;
+	padding: 24px 23px 20px;
+	background-color: #edeff1;
+	border-radius: 6px;
+	z-index: 9997;
+	width: 400px;
+	box-shadow: 1px 1px 3px #bbb;
+}
