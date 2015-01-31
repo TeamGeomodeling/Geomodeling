@@ -194,20 +194,22 @@ HTML;
 				<div class="row">
 			        <div class="col-xs-12 col-md-4" id="project-geo">
 			          <h5>Le projet</h5>
-			          <p><b>Geomodeling</b> est une application web de dessin 3D assisté par ordinateur, utilisant WebGL et THREE.js.
-			          	<div class="row">
+			          <p><div class="row">
 				          	<div class="col-xs-12 col-md-4"></div>
 				          	<div class="col-xs-12 col-md-4"><img src="../../img/virus.png" alt="..."/></div>
 				          	<div class="col-xs-12 col-md-4"></div>
-			          	</div>
+			          </div></p>
+			          <p><b>Geomodeling</b> est une application web de dessin 3D assisté par ordinateur, utilisant WebGL et THREE.js.
 			          <p>Créé dans le cadre du projet de L.P. Web et Mobile de l'INSSET de Saint-Quentin (02), promo 2014 - 2015.</p>
 			        	
 			        </div>
 			        <div class="col-xs-12 col-md-4">
 			          <h5>L'INSSET</h5>
-			          <a class="thumbnail" href="#">
+			          <p><a class="thumbnail" href="http://www.insset.u-picardie.fr/">
 			            <img src="../../img/insset.jpg" alt="...">
-			          </a>
+			          </p></a>
+			          <p><b>L'INSSET</b> est une composante de L'Université de Picardie Jules Verne, proposant un catalogue de formations autour des métiers du web, des systèmes embarqués, de la logistique ainsi que de la conception et simulation de produits.
+			          <p>À Saint-Quentin en Picardie, l'INSSET propose des formations depuis la Licence (post-bac) jusqu'au Master (bac+5), réalisables en formation initiale ou bien en alternance.
 			        </div>
 			        <div class="col-xs-12 col-md-4">
 			          <h5>L'équipe</h5>

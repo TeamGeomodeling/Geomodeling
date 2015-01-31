@@ -45,14 +45,32 @@ HTML;
 	}
 	$html->insertContent($navbar_login, "<div id'navbar-content'></div>");
 
+
+/*
+formulaire de recherche
+*/
+	$searchform=<<<HTML
+		<div class="container search">
+			<h3>Recherchez parmis les projets...</h3>
+			<div class="row">
+				<form class="col-xs-12 col-md-12 form-inline search" role="form">
+					<input type="text" class="searchinput form-control input-hg" placeholder="Entrez un mot-clé">
+		            <button type="submit" class="btn btn-hg btn-primary">Go!</button>
+		        </form>
+	        </div>
+        </div>
+HTML;
+	$content.=$searchform;
+
 /*-----------------------------------------------------------------------------------------------------------------
 ---------------------------------------------------- Pagination ---------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------*/
 	$pagination=<<<HTML
-		<div class="pagination">
+		<div class="container geo-projects"><div class="row"><div class="col-xs-0 col-md-3"></div>
+		<div class="pagination pagination-minimal col-xs-12 col-md-6">
             <ul>
               <li class="previous"><a href="#fakelink" class="fui-arrow-left"></a></li>
-              <li class=""><a href="#fakelink">1</a></li>
+              <li class="active"><a href="#fakelink">1</a></li>
               <li><a href="#fakelink">2</a></li>
               <li><a href="#fakelink">3</a></li>
               <li><a href="#fakelink">4</a></li>
@@ -62,21 +80,12 @@ HTML;
               <li><a href="#fakelink">8</a></li>
               <li><a href="#fakelink">9</a></li>
               <li><a href="#fakelink">10</a></li>
-              <li class="pagination-dropdown dropup active">
-                <a href="#fakelink" class="dropdown-toggle" data-toggle="dropdown">
-                  <i class="fui-triangle-up"></i>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a href="#fakelink">10–20</a></li>
-                  <li><a href="#fakelink">20–30</a></li>
-                  <li><a href="#fakelink">40–50</a></li>
-                </ul>
-              </li>
               <li class="next"><a href="#fakelink" class="fui-arrow-right"></a></li>
             </ul>
           </div>
+          <div class="col-xs-0 col-md-3"></div>
+          </div></div>
 HTML;
-	$html->insertContent($pagination, "</section><footer>");
 
 
 /*------------------------------------------------------------------------------------------------------------------
@@ -84,10 +93,10 @@ HTML;
 ------------------------------------------------------------------------------------------------------------------*/
 	$content .=<<<HTML
 	
-	<div class="projects">
+	<div class="allprojects">
 		<div class="container geo-projects">
 			<div class="geo-projects">
-				<h3>Quelques projets réalisés avec Geomodeling</h3>
+				<h3>... ou parcourez les projets existants!</h3>
 				      
 	      <div class="row">
 	        <div class="col-xs-12 col-md-4">
@@ -110,6 +119,8 @@ HTML;
 	        </div>
 	    </div>
 HTML;
+
+	$content .= $pagination;
 
 $html->setTitle("Projects");
 $html->insertContent($content, "<section id='content'></section>");

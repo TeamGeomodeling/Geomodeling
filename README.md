@@ -1,6 +1,6 @@
 # [Geomodeling]
 
-Geomodeling est une application web de dessin 3D assisté par ordinateur.
+Geomodeling est une application web de dessin 3D assistÃ© par ordinateur.
 
 Cette application utilise WebGL, THREE.js, Bootstrap et plein d'autres choses merveilleuses!
 

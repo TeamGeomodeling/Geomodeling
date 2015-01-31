@@ -8,11 +8,6 @@
 	padding-left: 80px;
 	background-position: 10px 10px;
 }
-.navbar{
-	margin-bottom: 0px;
-	box-shadow: 1px 1px 3px #bbb;
-
-}
 
 .navbar-fixed-top {
   position: fixed;
@@ -23,7 +18,7 @@
 .geo-header{
 	margin: 0;
 	padding: 0;
-	background: url('../../img/asteroidswhite.png') repeat;
+	background: url('../../img/asteroidsdark.png') repeat;
 }
 
 small{
@@ -37,12 +32,16 @@ small{
 
 .geo-logo {
   margin: 10px 0;
+  color: #ECF0F1;
   font: 900 90px/100px "Helvetica Neue", Helvetica, Arial, sans-serif;
   letter-spacing: -2px;
+
+  text-shadow: 0px 0px 12px #555;
+
 }
 
 .geo-logo small{
-	color: #95A5A6;
+	color: #ECF0F1;
 	font-size: 50%;
 }
 
@@ -56,41 +55,25 @@ small{
   background-size: 52px 50px;
  }
 
- .geo-header .container{
- 	background-color : rgba(240, 240, 240, 0.65);
- }
-
 .btnsolo{
 	margin-top: 30px;
 	margin-bottom: 30px;
 }
 
 .projects{
-	background: #fff;
+	background: #ECF0F1;
 }
 
 .presentation{
-	background: #ECF0F1;
-	text-align : justify;
+	background: #34495E;
+	color: #fff;
 }
 
 
 footer{
 	padding: 30px 0 15px 0;
 	font-size: 9pt;
-	color: #34495E;
+	background: #34495E;
+	color: #fff;
 	text-align: center;
-}
-
-body{
-	background: #ECF0F1;
-	padding-top: 70px;
-}
-
-.search{
-	margin-top: 20px;
-}
-
-.search .searchinput{
-	min-width: 400px;
 }

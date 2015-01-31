@@ -20,3 +20,5 @@ catch(Exception $e){
 	header('location: pages/accueil.php');
 	exit;
 }
+/* fin de l'index */
+
