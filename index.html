@@ -1,0 +1,352 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Mon premier rendu 3D avec Three.js</title>
+    <meta charset="utf-8">
+	
+  </head>
+<body>
+
+<div id="Menu">
+    <br><center>
+		Rotations
+	<br><br>
+		Axe X
+		<input type="button" value="+" onclick = "MoveObjectXPlus()" />
+		<input type="text" name="pseudo" id="RotateX"/>
+		<input type="button" value="-" onclick = "MoveObjectXMoins()" />
+		
+		Axe Y
+		<input type="button" value="+" onclick = "MoveObjectYPlus()" />
+		<input type="text" name="pseudo" id="RotateY"/>
+		<input type="button" value="-" onclick = "MoveObjectYMoins()" />
+		
+		Axe Z
+		<input type="button" value="+" onclick = "MoveObjectZPlus()" />
+		<input type="text" name="pseudo" id="RotateZ"/>
+		<input type="button" value="-" onclick = "MoveObjectZMoins()" />
+		<br>
+		 <br>
+		
+		Mouvements
+	<br>	
+		 <br>
+		Axe X
+		<input type="button" value="+" onclick = "MoveCubeXPlus()" />
+		<input type="text" name="pseudo" id="MoveX"/>
+		<input type="button" value="-" onclick = "MoveCubeXMoins()" />
+		
+		Axe Y
+		<input type="button" value="+" onclick = "MoveCubeYPlus()" />
+
+		<input type="text" name="pseudo" id="MoveY"/>
+		<input type="button" value="-" onclick = "MoveCubeYMoins()" />
+		
+		Axe Z
+		<input type="button" value="+" onclick = "MoveCubeZPlus()" />
+
+		<input type="text" name="pseudo" id="MoveZ"/>
+		<input type="button" value="-" onclick = "MoveCubeZMoins()" />
+		
+    <br>
+		 <br>
+		Taille
+	<br><br>
+		Axe X
+		<input type="button" value="+" onclick = "MoveObjectXPlus()" />
+		<input type="text" name="pseudo" id="RotateX"/>
+		<input type="button" value="-" onclick = "MoveObjectXMoins()" />
+	
+		Axe Y
+		<input type="button" value="+" onclick = "MoveObjectYPlus()" />
+		<input type="text" name="pseudo" id="RotateY"/>
+		<input type="button" value="-" onclick = "MoveObjectYMoins()" />
+		
+		Axe Z
+		<input type="button" value="+" onclick = "MoveObjectZPlus()" />
+		<input type="text" name="pseudo" id="RotateZ"/>
+		<input type="button" value="-" onclick = "MoveObjectZMoins()" />
+		<br><br>
+		 <br>
+		
+		
+		<input type="button" value="Créer Cube" onclick = "createCube()" />
+		<input type="button" value="Créer Sphere" onclick = "createSphere()" />
+		<input type="button" value="Créer Cylindre" onclick = "createCylinder()" /></br>
+		<br><br><br><br>
+		</center>
+</div>
+
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="/three.js-master/build/three.min.js"></script>
+  <script src="/three.js-master/examples/js/controls/OrbitControls.js"></script>
+  <script src="/three.js-master/examples/js/Detector.js"></script>
+  <script src="/three.js-master/examples/js/controls/TrackballControls.js"></script>
+  
+<!--  <script src="/three.js-master/src/core/Object3D.js"></script> Controle des objets -->
+
+  <!-- C'est ici que nous utilisons Three.js -->
+<script>
+            //Détection des facultés WebGl du browser
+            //---------------------------------------
+            if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
+
+            //Déclaration des variables standards (a modifier dans le futur)
+            //-----------------------------------
+            var container; //Elément conteneur du DOM
+            var camera; //Caméra
+            var scene; //Scène
+            var controls; //Contrôle de l'affichage
+            var renderer; //Renderer WebGL
+            var shape;
+			var CUBE_SIZE;
+			var positionX = 0;
+			var positionY = 5;
+			var positionZ = 0;
+			var RotateX = 0;
+			var RotateY = 0;
+			var RotateZ = 0;
+            // initialization
+            //---------------
+            init();
+
+            // animation
+            //----------
+            animate();
+
+            //  Initialisation des éléments indispensables à l'affichage
+            //----------------------------------------------------------
+            function init() {
+
+                //  Création de la scène
+                //----------------------
+                scene = new THREE.Scene();
+
+                //  Choix de la taille de l'affichage (toute la fenêtre ou dimensions personnalisées)
+                //-----------------------------------------------------------------------------------
+              var VIEW_WIDTH = window.innerWidth;
+              //  var VIEW_HEIGHT = window.innerHeight;
+                //var VIEW_WIDTH = 800;
+              var VIEW_HEIGHT = 600;
+                 
+                //Paramétrage de la caméra
+                //------------------------
+                var VIEW_ANGLE = 45; //angle de vue
+                var ASPECT = VIEW_WIDTH / VIEW_HEIGHT; //ratio d'affichage
+                var NEAR = 0.1; //distance minimale par rapport à la scène
+                var FAR = 2000;//distance maximale par rapport à la scène
+                
+                camera = new THREE.PerspectiveCamera( VIEW_ANGLE, ASPECT, NEAR, FAR); //création de la caméra
+                camera.position.set(150, 300, 300); //positionnement initial X Y Z
+                camera.lookAt(scene.position); //orientation vers le centre de la scène
+                
+                //  Création du conteneur et insertion dans le DOM
+                //------------------------------------------------
+                container = $('body').append('<div id="container"></div>');
+                
+                //  Création du renderer
+                //---------------------
+                renderer = new THREE.WebGLRenderer({antialias:true}); //mode anti-aliasing
+                renderer.setSize(VIEW_WIDTH, VIEW_HEIGHT); //ajustement à la taille choisie pour l'affichage
+                
+                //  Attachement du renderer au conteneur
+                //--------------------------------------
+                container.append(renderer.domElement);
+                
+                //  Création de la lumière
+                //------------------------
+                var light = new THREE.PointLight(0xffffff); //couleur blanche
+                light.position.set(0, 10, 0); //positionnement de la lumière X Y Z
+                scene.add(light); //attachement de la lumière à la scène
+                
+                //  Sol de la scène
+                //-----------------                
+                var floorGeometry = new THREE.PlaneGeometry(1000, 1000); //géométrie du sol
+                var floorTexture = new THREE.ImageUtils.loadTexture('images/tex_metal.jpg');
+                floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping; 
+                floorTexture.repeat.set( 100, 100 );
+                var floorMaterial = new THREE.MeshBasicMaterial({map: floorTexture}); //materiau du sol
+                var floor = new THREE.Mesh(floorGeometry, floorMaterial); //association de la géométrie et du matériau
+                floor.position.set( 0, 0, 0 ); //positionnement
+                floor.rotation.x = -Math.PI/2; //sol horizontal (!)
+                scene.add(floor); //attachement du sol à la scène
+                
+                //  Axes
+                //------
+                var axes = new THREE.AxisHelper();
+                axes.scale.set(CUBE_SIZE*3, CUBE_SIZE*3, CUBE_SIZE*3);
+                scene.add( axes );
+                
+                //  Contrôle de l'affichage à la souris
+                //-------------------------------------
+                controls = new THREE.OrbitControls(camera, renderer.domElement);
+				//controls = new THREE.TrackballControls(camera, renderer.domElement);
+                $(controls).on('change', render);
+                
+            }
+
+
+            function animate() {
+                requestAnimationFrame(animate);
+                render();
+                controls.update();
+            }
+
+            function render() {
+                renderer.render(scene, camera);
+            }
+			
+			
+			
+			///////////////Fonctions de Rotations////////////////////////////////////
+			//
+			function MoveObjectXPlus() {
+			shape.rotation.x += (Math.PI / 180) *5;
+			RotateX = Math.round((shape.rotation.x / Math.PI) *180);
+			document.getElementById("RotateX").value = RotateX;
+			renderer.render( scene, camera );
+		}
+			function MoveObjectXMoins() {
+			shape.rotation.x -= (Math.PI / 180) *5;
+			RotateX = Math.round((shape.rotation.x / Math.PI) *180);
+			document.getElementById("RotateX").value = RotateX;
+			renderer.render( scene, camera );
+		}	
+			function MoveObjectYPlus() {
+			shape.rotation.y += (Math.PI / 180) *5;
+			RotateY = Math.round((shape.rotation.y / Math.PI) *180);
+			document.getElementById("RotateY").value = RotateY;
+			renderer.render( scene, camera );
+		}
+			function MoveObjectYMoins() {
+			shape.rotation.y -= (Math.PI / 180) *5;
+			RotateY = Math.round((shape.rotation.y / Math.PI) *180);
+			document.getElementById("RotateY").value = RotateY;
+			renderer.render( scene, camera );
+		}	
+			function MoveObjectZPlus() {
+			shape.rotation.z += (Math.PI / 180) *5;
+			RotateZ = Math.round((shape.rotation.z / Math.PI) *180)
+			document.getElementById("RotateZ").value = RotateZ;
+			renderer.render( scene, camera );
+		}
+			function MoveObjectZMoins() {
+			shape.rotation.z -= (Math.PI / 180) *5;
+			RotateZ = Math.round((shape.rotation.z / Math.PI) *180);
+			document.getElementById("RotateZ").value = RotateZ;
+			renderer.render( scene, camera );
+		}
+		//////////////////////////////////////////////////////////////////////////
+		
+		
+		
+		
+		///////////////Fonctions de mouvements////////////////////////////////////
+		//
+		function MoveCubeXPlus() {
+			shape.position.set(positionX += 5, positionY, positionZ);
+			document.getElementById("MoveX").value = positionX;
+		}
+		function MoveCubeXMoins() {
+			shape.position.set(positionX -= 5, positionY, positionZ);
+			document.getElementById("MoveX").value = positionX;
+		}	
+		function MoveCubeYPlus() {
+			shape.position.set(positionX, positionY += 5, positionZ);
+			
+			document.getElementById("MoveY").value = positionY;
+		}
+		function MoveCubeYMoins() {
+			shape.position.set(positionX, positionY -= 5, positionZ);
+			document.getElementById("MoveY").value = positionY;
+		}	
+		function MoveCubeZPlus() {
+			shape.position.set(positionX, positionY, positionZ += 5);
+			document.getElementById("MoveZ").value = positionZ;
+		}
+		function MoveCubeZMoins() {
+			shape.position.set(positionX, positionY, positionZ -= 5);
+			document.getElementById("MoveZ").value = positionZ;
+		}
+		
+	/////////////////////////////////////////////////////////////////
+		
+		
+	////////////
+	// CUSTOM //
+	////////////
+	
+	
+	
+	
+	
+	
+	
+	////////////////Fontion de couleur random////////////////////////////
+	
+	function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    var darkMaterial = new THREE.MeshBasicMaterial( { color: color }) ;
+	return darkMaterial;
+}
+
+	var wireframeMaterial = new THREE.MeshBasicMaterial( { color: 0x000000, wireframe: true, transparent: false } ); 
+	var multiMaterial; 
+	
+	/////////////////////////////////////////////////////////////////////
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	////////////////Fontion de création de formes////////////////////////////
+	
+	// cube
+	function createCube() { 
+	 shape = THREE.SceneUtils.createMultiMaterialObject( 
+		new THREE.CubeGeometry(50, 50, 50, 1, 1, 1), //paramètres de la forme
+		multiMaterial= [ getRandomColor(), wireframeMaterial ] ); //Couleur + arrêtes
+		positionX = 0; positionY = 5; positionZ = 0; //position
+	shape.position.set(positionX, positionY, positionZ); //placement de la forme a la position
+	scene.add( shape ); //ajout de la forme a la scene
+	}
+	//
+	// sphere
+	function createSphere() {
+	 shape = THREE.SceneUtils.createMultiMaterialObject( 
+		new THREE.SphereGeometry( 40, 32, 16 ), 
+		multiMaterial= [ getRandomColor(), wireframeMaterial ] );
+	positionX = 0; positionY = 5; positionZ = 0;
+	shape.position.set(positionX, positionY, positionZ);
+	scene.add( shape );
+	}
+	//
+	// cylinder
+	function createCylinder() {
+	 shape = THREE.SceneUtils.createMultiMaterialObject( 
+		// radiusAtTop, radiusAtBottom, height, segmentsAroundRadius, segmentsAlongHeight,
+		new THREE.CylinderGeometry( 30, 30, 80, 20, 4 ), 
+		multiMaterial= [ getRandomColor(), wireframeMaterial ] );
+	positionX = 0; positionY = 5; positionZ = 0;
+	shape.position.set(positionX, positionY, positionZ);
+	scene.add( shape );
+	}
+	
+	/////////////////////////////////////////////////////////////////////
+	
+       	   </script>
+		<div id="container"></div>
+		<canvas width="800" height="600"></canvas>
+		
+</body>
+</html>
